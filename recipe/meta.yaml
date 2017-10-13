@@ -1,4 +1,6 @@
-{% set version = "4.5.0" %}
+{% set version = "4.5.0.post" %}
+{% set commit = "17c897976c60b0e6e4f4a365c751027244dada7a" %}
+{% set sha256sum = "013e23d89f7e5e99da9764ee98a51e38724752dd5274003532d8e89368054f79" %}
 
 package:
   name: jemalloc
@@ -6,8 +8,8 @@ package:
 
 source:
   fn: {{ version }}.tar.bz2
-  url: https://github.com/jemalloc/jemalloc/releases/download/{{ version }}/jemalloc-{{ version }}.tar.bz2
-  sha256: 9409d85664b4f135b77518b0b118c549009dc10f6cba14557d170476611f6780
+  url: https://github.com/jemalloc/jemalloc/archive/{{ commit }}.tar.gz
+  sha256: {{ sha256sum }}
 
 build:
   number: 0
