@@ -1,4 +1,4 @@
-{% set version = "5.0.0" %}
+{% set version = "5.0.1" %}
 
 package:
   name: jemalloc
@@ -7,10 +7,10 @@ package:
 source:
   fn: {{ version }}.tar.bz2
   url: https://github.com/jemalloc/jemalloc/releases/download/{{ version }}/jemalloc-{{ version }}.tar.bz2
-  sha256: 9e4a9efba7dc4a7696f247c90c3fe89696de5f910f7deacf7e22ec521b1fa810
+  sha256: 4814781d395b0ef093b21a08e8e6e0bd3dab8762f9935bbfb71679b0dea7c3e9
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
