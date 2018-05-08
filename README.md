@@ -14,14 +14,16 @@ Summary: general purpose malloc(3) implementation
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/jemalloc-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/jemalloc-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/jemalloc-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/jemalloc-feedstock)
-Windows: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/jemalloc-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/jemalloc-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/jemalloc-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/jemalloc-feedstock)
+![Windows disabled](https://img.shields.io/badge/Windows-disabled-lightgrey.svg)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jemalloc/badges/version.svg)](https://anaconda.org/conda-forge/jemalloc)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jemalloc/badges/downloads.svg)](https://anaconda.org/conda-forge/jemalloc)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-jemalloc-green.svg)](https://anaconda.org/conda-forge/jemalloc) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jemalloc.svg)](https://anaconda.org/conda-forge/jemalloc) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jemalloc.svg)](https://anaconda.org/conda-forge/jemalloc) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jemalloc.svg)](https://anaconda.org/conda-forge/jemalloc) |
 
 Installing jemalloc
 ===================
