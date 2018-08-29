@@ -9,6 +9,7 @@ set -x
 # We disable this feature until we better understand how to avoid loader errors
 # of this type
 ./configure --prefix=$PREFIX \
-            --disable-tls
+            --disable-tls \
+            --with-mangling=aligned_alloc:__aligned_alloc
 make -j${CPU_COUNT}
 make install
