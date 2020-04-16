@@ -1,24 +1,32 @@
+{% set name = "jemalloc" %}
 {% set version = "4.5.0.post" %}
 {% set commit = "17c897976c60b0e6e4f4a365c751027244dada7a" %}
-{% set sha256sum = "013e23d89f7e5e99da9764ee98a51e38724752dd5274003532d8e89368054f79" %}
 
 package:
-  name: jemalloc
+  name: {{ name }}
   version: {{ version }}
 
 source:
   fn: {{ version }}.tar.bz2
   url: https://github.com/jemalloc/jemalloc/archive/{{ commit }}.tar.gz
-  sha256: {{ sha256sum }}
+  sha256: 013e23d89f7e5e99da9764ee98a51e38724752dd5274003532d8e89368054f79
 
 build:
-  number: 0
+  number: 1
+  run_exports:
+    # Symbols were only removed only in update from 3 to 4
+    # https://abi-laboratory.pro/index.php?view=timeline&l=jemalloc
+    - {{ pin_subpackage(name, max_pin='x') }}
   skip: true  # [win]
+
 
 requirements:
   build:
+    - make
     - automake
-    - toolchain
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
 
 test:
   commands:
@@ -31,7 +39,7 @@ test:
 about:
   home: http://jemalloc.net
   dev_url: https://github.com/jemalloc/jemalloc
-  license: BSD 2-Clause
+  license: BSD-2-Clause
   license_file: COPYING
   summary: 'general purpose malloc(3) implementation'
 
