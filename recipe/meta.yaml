@@ -13,11 +13,10 @@ source:
 build:
   number: 1
   run_exports:
-    # Symbols were only removed only in update from 3 to 4
+    # Symbols were only removed in update from 3 to 4
     # https://abi-laboratory.pro/index.php?view=timeline&l=jemalloc
     - {{ pin_subpackage(name, max_pin='x') }}
   skip: true  # [win]
-
 
 requirements:
   build:
