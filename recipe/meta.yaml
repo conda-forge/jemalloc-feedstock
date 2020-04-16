@@ -36,7 +36,7 @@ test:
 about:
   home: http://jemalloc.net
   dev_url: https://github.com/jemalloc/jemalloc
-  license: BSD 2-Clause
+  license: BSD-2-Clause
   license_file: COPYING
   summary: 'general purpose malloc(3) implementation'
 
