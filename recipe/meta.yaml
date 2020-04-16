@@ -10,8 +10,13 @@ source:
   sha256: 34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6
 
 build:
-  number: 0
+  number: 1
+  run_exports:
+    # Symbols were only removed once between 3 to 4.
+    # https://abi-laboratory.pro/index.php?view=timeline&l=jemalloc
+    - {{ pin_subpackage(name, max_pin='x') }}
   skip: true  # [win]
+
 
 requirements:
   build:
