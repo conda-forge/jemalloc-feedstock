@@ -16,7 +16,7 @@ build:
   run_exports:
     # Symbols were only removed in update from 3 to 4
     # https://abi-laboratory.pro/index.php?view=timeline&l=jemalloc
-    - {{ pin_subpackage(name, max_pin='x') }}
+    - {{ pin_subpackage(name, max_pin=None) }}
   skip: true  # [win]
 
 
