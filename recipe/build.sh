@@ -12,5 +12,11 @@ set -x
 ./configure --prefix=$PREFIX \
             --disable-tls \
             --with-mangling=aligned_alloc:__aligned_alloc
+            
+# Skip doc generation as the required docbook XSLs are not yet packaged on conda-forge
+touch doc/jemalloc.html		             
+touch doc/jemalloc.3
+
+# Build
 make -j${CPU_COUNT}
 make install
