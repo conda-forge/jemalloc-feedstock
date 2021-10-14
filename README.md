@@ -77,6 +77,9 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-jemalloc-green.svg)](https://anaconda.org/conda-forge/jemalloc) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jemalloc.svg)](https://anaconda.org/conda-forge/jemalloc) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jemalloc.svg)](https://anaconda.org/conda-forge/jemalloc) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jemalloc.svg)](https://anaconda.org/conda-forge/jemalloc) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-jemalloc--local-green.svg)](https://anaconda.org/conda-forge/jemalloc-local) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jemalloc-local.svg)](https://anaconda.org/conda-forge/jemalloc-local) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jemalloc-local.svg)](https://anaconda.org/conda-forge/jemalloc-local) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jemalloc-local.svg)](https://anaconda.org/conda-forge/jemalloc-local) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libjemalloc-green.svg)](https://anaconda.org/conda-forge/libjemalloc) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libjemalloc.svg)](https://anaconda.org/conda-forge/libjemalloc) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libjemalloc.svg)](https://anaconda.org/conda-forge/libjemalloc) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libjemalloc.svg)](https://anaconda.org/conda-forge/libjemalloc) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libjemalloc--local-green.svg)](https://anaconda.org/conda-forge/libjemalloc-local) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libjemalloc-local.svg)](https://anaconda.org/conda-forge/libjemalloc-local) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libjemalloc-local.svg)](https://anaconda.org/conda-forge/libjemalloc-local) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libjemalloc-local.svg)](https://anaconda.org/conda-forge/libjemalloc-local) |
 
 Installing jemalloc
 ===================
@@ -85,12 +88,13 @@ Installing `jemalloc` from the `conda-forge` channel can be achieved by adding `
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `jemalloc` can be installed with:
+Once the `conda-forge` channel has been enabled, `jemalloc, jemalloc-local, libjemalloc, libjemalloc-local` can be installed with:
 
 ```
-conda install jemalloc
+conda install jemalloc jemalloc-local libjemalloc libjemalloc-local
 ```
 
 It is possible to list all of the versions of `jemalloc` available on your platform with:
@@ -155,9 +159,9 @@ build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
  * If the version of a package **is not** being increased, please add or increase
-   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string).
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string).
  * If the version of a package **is** being increased, please remember to return
-   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string)
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string)
    back to 0.
 
 Feedstock Maintainers
