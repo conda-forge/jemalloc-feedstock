@@ -19,9 +19,8 @@ if [[ ${target_platform} =~ linux.* ]]; then
   ./configure --prefix=${PREFIX} \
               --disable-static \
               --disable-tls \
-              --with-mangling=aligned_alloc:__aligned_alloc \
               --disable-initial-exec-tls \
-	      ${EXTRA_CONFIGURE_ARGS:-}
+	      ${EXTRA_CONFIGURE_ARGS:---with-mangling=aligned_alloc:__aligned_alloc}
 elif [[ "${target_platform}" == "osx-arm64" ]]; then
   ./configure --prefix=${PREFIX} \
               --disable-static \
