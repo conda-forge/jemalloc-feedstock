@@ -2,8 +2,7 @@
 # Get an updated config.sub and config.guess
 cp $BUILD_PREFIX/share/gnuconfig/config.* ./build-aux
 
-set -e
-set -x
+set -exuo pipefail
 
 # Static TLS has caused users to experience some errors of the form
 # "libjemalloc.so.2: cannot allocate memory in static TLS block"
@@ -17,19 +16,29 @@ if [[ ${target_platform} =~ linux.* ]]; then
   #    a separate name, we cannot override it.
   #  * With the old glibc version/headers, we also run into
   #    https://github.com/jemalloc/jemalloc/issues/1237
-  ./configure --prefix=$PREFIX \
+  ./configure --prefix=${PREFIX} \
               --disable-static \
               --disable-tls \
-              --with-mangling=aligned_alloc:__aligned_alloc \
-              --disable-initial-exec-tls
+              --disable-initial-exec-tls \
+	      ${EXTRA_CONFIGURE_ARGS:---with-mangling=aligned_alloc:__aligned_alloc}
 elif [[ "${target_platform}" == "osx-arm64" ]]; then
-  ./configure --prefix=$PREFIX \
+  ./configure --prefix=${PREFIX} \
               --disable-static \
-              --with-lg-page=14
+              --with-lg-page=14 \
+	      ${EXTRA_CONFIGURE_ARGS:-}
 else
-  ./configure --prefix=$PREFIX \
+  ./configure --prefix=${PREFIX} \
               --disable-static \
-              --disable-tls
+              --disable-tls \
+	      ${EXTRA_CONFIGURE_ARGS:-}
 fi
 make -j${CPU_COUNT}
 make install
+
+
+if [[ "${PKG_NAME}" == lib* ]]; then
+  rm ${PREFIX}/bin/jemalloc-config
+  rm ${PREFIX}/bin/jeprof
+  rm ${PREFIX}/bin/jemalloc.sh
+  rm ${PREFIX}/lib/pkgconfig/jemalloc.pc
+fi
