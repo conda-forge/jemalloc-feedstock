@@ -61,6 +61,7 @@ outputs:
         - {{ compiler('c') }}
       files:
         - test.c
+        - test-preload.c
       commands:
         - test -f $PREFIX/bin/jeprof
         - $CC -I$PREFIX/include -L$PREFIX/lib -ljemalloc test.c
