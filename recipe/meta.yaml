@@ -1,5 +1,5 @@
 {% set name = "jemalloc" %}
-{% set version = "5.2.1" %}
+{% set version = "5.3.0" %}
 
 package:
   name: {{ name }}-split
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/jemalloc/jemalloc/releases/download/{{ version }}/jemalloc-{{ version }}.tar.bz2
-  sha256: 34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6
+  sha256: 2db82d1e7119df3e71b7640219b6dfe84789bc0537983c3b7ac4f7189aecfeaa
   patches:
     - export-mangled-syms.patch
 
 build:
-  number: 6
+  number: 0
   skip: true  # [win]
 
 outputs:
@@ -53,9 +53,9 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
-        - {{ pin_subpackage('libjemalloc', exact=true) }}
+        - {{ pin_subpackage('libjemalloc', exact=true) }}
       run:
-        - {{ pin_subpackage('libjemalloc', exact=true) }}
+        - {{ pin_subpackage('libjemalloc', exact=true) }}
     test:
       requires:
         - {{ compiler('c') }}
@@ -103,9 +103,9 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
-        - {{ pin_subpackage('libjemalloc-local', exact=true) }}
+        - {{ pin_subpackage('libjemalloc-local', exact=true) }}
       run:
-        - {{ pin_subpackage('libjemalloc-local', exact=true) }}
+        - {{ pin_subpackage('libjemalloc-local', exact=true) }}
       run_constrained:
         - jemalloc <0a0
     test:
@@ -122,10 +122,11 @@ about:
   dev_url: https://github.com/jemalloc/jemalloc
   license: BSD-2-Clause
   license_file: COPYING
-  summary: 'general purpose malloc(3) implementation'
+  summary: general purpose malloc(3) implementation
 
 extra:
   feedstock-name: jemalloc
   recipe-maintainers:
     - wesm
     - xhochy
+    - matthiasdiener
