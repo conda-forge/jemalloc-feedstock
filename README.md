@@ -1,7 +1,7 @@
 About jemalloc
 ==============
 
-Home: http://jemalloc.net
+Home: https://jemalloc.net
 
 Package license: BSD-2-Clause
 
@@ -10,6 +10,8 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jemalloc-feedst
 Summary: general purpose malloc(3) implementation
 
 Development: https://github.com/jemalloc/jemalloc
+
+Documentation: https://jemalloc.net/jemalloc.3.html
 
 Current build status
 ====================
