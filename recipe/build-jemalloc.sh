@@ -11,7 +11,7 @@ set -exuo pipefail
 # of this type
 if [[ ${target_platform} =~ linux.* ]]; then
   if [[ ${target_platform} == linux-ppc64le ]]; then
-    EXTRA_CONFIGURE_ARGS="--with-lg-page=16"
+    EXTRA_CONFIGURE_ARGS+=" --with-lg-page=16"
   fi
 
   # Fixes:
