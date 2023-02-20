@@ -66,7 +66,7 @@ outputs:
         - test -f $PREFIX/bin/jeprof
         - $CC -I$PREFIX/include -L$PREFIX/lib -ljemalloc test.c
         - $CC -I$PREFIX/include test-preload.c -o test-preload
-        - LD_PRELOAD=$PREFIX/lib/libjemalloc.so ./test-preload
+        - LD_PRELOAD=$PREFIX/lib/libjemalloc.so MALLOC_CONF=stats_print:true ./test-preload
 
   - name: lib{{ name }}-local
     script: build-jemalloc-local.sh
