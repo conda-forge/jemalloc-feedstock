@@ -61,9 +61,12 @@ outputs:
         - {{ compiler('c') }}
       files:
         - test.c
+        - test-preload.c
       commands:
         - test -f $PREFIX/bin/jeprof
         - $CC -I$PREFIX/include -L$PREFIX/lib -ljemalloc test.c
+        - $CC -I$PREFIX/include test-preload.c -o test-preload
+        - LD_PRELOAD=$PREFIX/lib/libjemalloc.so MALLOC_CONF=stats_print:true ./test-preload
 
   - name: lib{{ name }}-local
     script: build-jemalloc-local.sh
@@ -118,8 +121,9 @@ outputs:
         - $CC -I$PREFIX/include -L$PREFIX/lib -ljemalloclocal test-local.c
 
 about:
-  home: http://jemalloc.net
+  home: https://jemalloc.net
   dev_url: https://github.com/jemalloc/jemalloc
+  doc_url: https://jemalloc.net/jemalloc.3.html
   license: BSD-2-Clause
   license_file: COPYING
   summary: general purpose malloc(3) implementation

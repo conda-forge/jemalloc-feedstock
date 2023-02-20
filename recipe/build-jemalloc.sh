@@ -10,6 +10,10 @@ set -exuo pipefail
 # We disable this feature until we better understand how to avoid loader errors
 # of this type
 if [[ ${target_platform} =~ linux.* ]]; then
+  if [[ ${target_platform} == linux-ppc64le ]]; then
+    EXTRA_CONFIGURE_ARGS+=" --with-lg-page=16"
+  fi
+
   # Fixes:
   #  * As conda-forge/anaconda patches the glibc headers to have an inline
   #    aligned_alloc implementation, we need to mangle aligned_alloc to use

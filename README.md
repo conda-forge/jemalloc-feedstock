@@ -1,7 +1,7 @@
 About jemalloc
 ==============
 
-Home: http://jemalloc.net
+Home: https://jemalloc.net
 
 Package license: BSD-2-Clause
 
@@ -11,11 +11,20 @@ Summary: general purpose malloc(3) implementation
 
 Development: https://github.com/jemalloc/jemalloc
 
+Documentation: https://jemalloc.net/jemalloc.3.html
+
 Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://app.travis-ci.com/conda-forge/jemalloc-feedstock">
+        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/jemalloc-feedstock/main.svg?label=Linux">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
