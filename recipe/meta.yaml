@@ -1,4 +1,4 @@
-{% set name = "jemalloc" %}
+{% set name = "jemalloc-katana" %}
 {% set version = "5.3.0" %}
 
 package:
@@ -64,58 +64,6 @@ outputs:
       commands:
         - test -f $PREFIX/bin/jeprof
         - $CC -I$PREFIX/include -L$PREFIX/lib -ljemalloc test.c
-
-  - name: lib{{ name }}-local
-    script: build-jemalloc-local.sh
-    build:
-      run_exports:
-        # Symbols were only removed in update from 3 to 4
-        # https://abi-laboratory.pro/index.php?view=timeline&l=jemalloc
-        - {{ pin_subpackage("libjemalloc-local", max_pin=None) }}
-    requirements:
-      build:
-        - make
-        - gnuconfig  # [unix]
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-      host:
-    test:
-      commands:
-        - test -f $PREFIX/lib/libjemalloclocal.so.2  # [linux]
-        - test ! -f $PREFIX/lib/libjemalloc${SHLIB_EXT}
-        - test ! -f $PREFIX/lib/libjemalloclocal.a
-        - test ! -f $PREFIX/lib/libjemalloclocal_pic.a
-        - test -f $PREFIX/lib/libjemalloclocal.2.dylib  # [osx]
-        - test -f $PREFIX/include/jemalloc/jemalloclocal.h
-        - test ! -f $PREFIX/jeprof
-
-  - name: {{ name }}-local
-    script: build-jemalloc-local.sh
-    build:
-      run_exports:
-        # Symbols were only removed in update from 3 to 4
-        # https://abi-laboratory.pro/index.php?view=timeline&l=jemalloc
-        - {{ pin_subpackage("libjemalloc-local", max_pin=None) }}
-    requirements:
-      build:
-        - make
-        - gnuconfig  # [unix]
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-      host:
-        - {{ pin_subpackage('libjemalloc-local', exact=true) }}
-      run:
-        - {{ pin_subpackage('libjemalloc-local', exact=true) }}
-      run_constrained:
-        - jemalloc <0a0
-    test:
-      requires:
-        - {{ compiler('c') }}
-      files:
-        - test-local.c
-      commands:
-        - test -f $PREFIX/bin/jeprof
-        - $CC -I$PREFIX/include -L$PREFIX/lib -ljemalloclocal test-local.c
 
 about:
   home: http://jemalloc.net
