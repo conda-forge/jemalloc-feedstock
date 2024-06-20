@@ -4,6 +4,9 @@ cp $BUILD_PREFIX/share/gnuconfig/config.* ./build-aux
 
 set -exuo pipefail
 
+export CXXFLAGS="-std=c++17 $CXXFLAGS"
+# export EXTRA_CONFIGURE_ARGS="--with-jemalloc-prefix=local --with-install-suffix=local --enable-prof --enable-stats --enable-blarg"
+
 # Static TLS has caused users to experience some errors of the form
 # "libjemalloc.so.2: cannot allocate memory in static TLS block"
 #
@@ -18,8 +21,9 @@ if [[ ${target_platform} =~ linux.* ]]; then
   #    https://github.com/jemalloc/jemalloc/issues/1237
   ./configure --prefix=${PREFIX} \
               --disable-static \
-              --disable-tls \
               --disable-initial-exec-tls \
+              --enable-prof \
+              --enable-stats \
 	      ${EXTRA_CONFIGURE_ARGS:---with-mangling=aligned_alloc:__aligned_alloc}
 elif [[ "${target_platform}" == "osx-arm64" ]]; then
   ./configure --prefix=${PREFIX} \
@@ -29,7 +33,6 @@ elif [[ "${target_platform}" == "osx-arm64" ]]; then
 else
   ./configure --prefix=${PREFIX} \
               --disable-static \
-              --disable-tls \
 	      ${EXTRA_CONFIGURE_ARGS:-}
 fi
 make -j${CPU_COUNT}
