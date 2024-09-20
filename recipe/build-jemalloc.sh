@@ -16,11 +16,15 @@ if [[ ${target_platform} =~ linux.* ]]; then
   #    a separate name, we cannot override it.
   #  * With the old glibc version/headers, we also run into
   #    https://github.com/jemalloc/jemalloc/issues/1237
+  EXTRA_CONFIGURE_ARGS=${EXTRA_CONFIGURE_ARGS:---with-mangling=aligned_alloc:__aligned_alloc}
+  if [[ "${target_platform}" == "linux-aarch64" ]]; then
+    EXTRA_CONFIGURE_ARGS="${EXTRA_CONFIGURE_ARGS} --with-lg-page=16"
+  fi
   ./configure --prefix=${PREFIX} \
               --disable-static \
               --disable-tls \
               --disable-initial-exec-tls \
-	      ${EXTRA_CONFIGURE_ARGS:---with-mangling=aligned_alloc:__aligned_alloc}
+	      ${EXTRA_CONFIGURE_ARGS}
 elif [[ "${target_platform}" == "osx-arm64" ]]; then
   ./configure --prefix=${PREFIX} \
               --disable-static \
