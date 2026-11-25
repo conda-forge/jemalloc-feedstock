@@ -11,12 +11,9 @@ set -exuo pipefail
 # of this type
 if [[ ${target_platform} =~ linux.* ]]; then
   # Fixes:
-  #  * As conda-forge/anaconda patches the glibc headers to have an inline
-  #    aligned_alloc implementation, we need to mangle aligned_alloc to use
-  #    a separate name, we cannot override it.
   #  * With the old glibc version/headers, we also run into
   #    https://github.com/jemalloc/jemalloc/issues/1237
-  EXTRA_CONFIGURE_ARGS=${EXTRA_CONFIGURE_ARGS:---with-mangling=aligned_alloc:__aligned_alloc}
+  EXTRA_CONFIGURE_ARGS=${EXTRA_CONFIGURE_ARGS:-}
   if [[ "${target_platform}" == "linux-aarch64" ]]; then
     EXTRA_CONFIGURE_ARGS="${EXTRA_CONFIGURE_ARGS} --with-lg-page=16"
   fi
