@@ -12,7 +12,7 @@ source:
     - export-mangled-syms.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 outputs:
@@ -63,9 +63,12 @@ outputs:
         - {{ compiler('c') }}
       files:
         - test.c
+        - test-aligned-alloc.c
       commands:
         - test -f $PREFIX/bin/jeprof
         - $CC -I$PREFIX/include -L$PREFIX/lib -ljemalloc test.c
+        - $CC test-aligned-alloc.c -o test-aligned-alloc  # [linux]
+        - LD_PRELOAD=$PREFIX/lib/libjemalloc.so.2 ./test-aligned-alloc  # [linux]
 
   - name: lib{{ name }}-local
     script: build-jemalloc-local.sh
